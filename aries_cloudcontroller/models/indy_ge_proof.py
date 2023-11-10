@@ -19,8 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, StrictStr, field_validator
 
 from aries_cloudcontroller.models.indy_ge_proof_pred import IndyGEProofPred
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -36,12 +35,12 @@ class IndyGEProof(BaseModel):
     IndyGEProof
     """
 
-    alpha: Optional[Annotated[str, Field(strict=True)]] = None
-    mj: Optional[Annotated[str, Field(strict=True)]] = None
+    alpha: Optional[StrictStr] = None
+    mj: Optional[StrictStr] = None
     predicate: Optional[IndyGEProofPred] = None
-    r: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
-    t: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
-    u: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
+    r: Optional[Dict[str, StrictStr]] = None
+    t: Optional[Dict[str, StrictStr]] = None
+    u: Optional[Dict[str, StrictStr]] = None
     __properties: ClassVar[List[str]] = ["alpha", "mj", "predicate", "r", "t", "u"]
 
     @field_validator("alpha")

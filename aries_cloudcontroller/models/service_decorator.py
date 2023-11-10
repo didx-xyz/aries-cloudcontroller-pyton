@@ -19,7 +19,6 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -34,10 +33,10 @@ class ServiceDecorator(BaseModel):
     ServiceDecorator
     """
 
-    recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    recipient_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of recipient keys", alias="recipientKeys"
     )
-    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    routing_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of routing keys", alias="routingKeys"
     )
     service_endpoint: Optional[StrictStr] = Field(

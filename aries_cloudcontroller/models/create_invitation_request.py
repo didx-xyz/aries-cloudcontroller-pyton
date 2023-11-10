@@ -17,10 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,20 +34,20 @@ class CreateInvitationRequest(BaseModel):
     CreateInvitationRequest
     """
 
-    mediation_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    mediation_id: Optional[StrictStr] = Field(
         default=None, description="Identifier for active mediation record to be used"
     )
-    metadata: Optional[Union[str, Any]] = Field(
+    metadata: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Optional metadata to attach to the connection created with the invitation",
     )
     my_label: Optional[StrictStr] = Field(
         default=None, description="Optional label for connection invitation"
     )
-    recipient_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    recipient_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of recipient keys"
     )
-    routing_keys: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    routing_keys: Optional[List[StrictStr]] = Field(
         default=None, description="List of routing keys"
     )
     service_endpoint: Optional[StrictStr] = Field(

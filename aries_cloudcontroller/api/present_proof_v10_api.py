@@ -345,21 +345,17 @@ class PresentProofV10Api:
             str, Field(strict=True, description="Presentation exchange identifier")
         ],
         count: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Maximum number to retrieve"),
+            Optional[StrictStr], Field(description="Maximum number to retrieve")
         ] = None,
         extra_query: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="(JSON) object mapping referents to extra WQL queries"),
         ] = None,
         referent: Annotated[
             Optional[StrictStr],
             Field(description="Proof request referents of interest, comma-separated"),
         ] = None,
-        start: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Start index"),
-        ] = None,
+        start: Annotated[Optional[StrictStr], Field(description="Start index")] = None,
         **kwargs,
     ) -> List[IndyCredPrecis]:
         """Fetch credentials for a presentation request from wallet  # noqa: E501
@@ -405,21 +401,17 @@ class PresentProofV10Api:
             str, Field(strict=True, description="Presentation exchange identifier")
         ],
         count: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Maximum number to retrieve"),
+            Optional[StrictStr], Field(description="Maximum number to retrieve")
         ] = None,
         extra_query: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
+            Optional[StrictStr],
             Field(description="(JSON) object mapping referents to extra WQL queries"),
         ] = None,
         referent: Annotated[
             Optional[StrictStr],
             Field(description="Proof request referents of interest, comma-separated"),
         ] = None,
-        start: Annotated[
-            Optional[Annotated[str, Field(strict=True)]],
-            Field(description="Start index"),
-        ] = None,
+        start: Annotated[Optional[StrictStr], Field(description="Start index")] = None,
         **kwargs,
     ) -> ApiResponse:
         """Fetch credentials for a presentation request from wallet  # noqa: E501

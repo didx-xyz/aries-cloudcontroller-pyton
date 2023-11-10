@@ -6,9 +6,6 @@ cd "$(dirname "$0")/../../generated/" || exit # Move to /generated folder
 # Remove `# noqa: F401` comment indicating to ignore unused imports, for autoflake
 find aries_cloudcontroller -type f -name '*.py' | xargs sed -i 's/# noqa: F401//'
 
-# autoflake to remove unused imports
-autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
-
 # Cleanup generated models
 for file in aries_cloudcontroller/models/*.py; do
     # Replace the model config with DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -54,6 +51,12 @@ sed -i -e 's/context: List\[Union\[str, Any\]\]/context: List\[Union\[str, Dict\
 # Fix type in invitation_message.py: "Any" type in services should be a dict
 sed -i 's/services: Optional\[List\[Union\[str, Any\]\]\]/services: Optional\[List\[Union\[str, Dict\]\]\]/g' aries_cloudcontroller/models/invitation_message.py
 
+# Fix Union[str,Any] should be Dict[str,Any]! Most of them are wrapped in Optional[..] and some in List[..]. But all can safely be replaced (there are no valid Union[str, Any]'s, all must be Dict)
+sed -i 's/Union\[str, Any\]/Dict[str, Any]/g' aries_cloudcontroller/models/*.py
+
+# Replace all `Annotated[str, Field(strict=True)]` with `StrictStr` (the one is simpler than the other ...)
+sed -i 's/Annotated\[str, Field(strict=True)\]/StrictStr/g' aries_cloudcontroller/*/*.py
+
 # NB:
 # There are 3 more models, and 1 API Module, that we are not amending automatically. These should be reviewed manually:
 # - MultitenancyAPI has custom method to handle our groups plugin!
@@ -64,6 +67,9 @@ sed -i 's/services: Optional\[List\[Union\[str, Any\]\]\]/services: Optional\[Li
 
 # Additionally, the API Client we modify so that query_params are converted from bool to str, before being submitted to ACA-Py
 # This change impacts multiple lines, calling `sanitize_for_serialization`
+
+# autoflake to remove unused imports
+autoflake aries_cloudcontroller -i -r --remove-all-unused-imports --ignore-init-module-imports
 
 # Black format and optimise imports
 black aries_cloudcontroller

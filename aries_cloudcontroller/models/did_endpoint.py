@@ -19,8 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, Field, StrictStr, field_validator
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,8 +34,8 @@ class DIDEndpoint(BaseModel):
     DIDEndpoint
     """
 
-    did: Annotated[str, Field(strict=True)] = Field(description="DID of interest")
-    endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+    did: StrictStr = Field(description="DID of interest")
+    endpoint: Optional[StrictStr] = Field(
         default=None, description="Endpoint to set (omit to delete)"
     )
     __properties: ClassVar[List[str]] = ["did", "endpoint"]

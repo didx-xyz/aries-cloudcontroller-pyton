@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -33,7 +33,7 @@ class ConnectionMetadata(BaseModel):
     ConnectionMetadata
     """
 
-    results: Optional[Union[str, Any]] = Field(
+    results: Optional[Dict[str, Any]] = Field(
         default=None, description="Dictionary of metadata associated with connection."
     )
     __properties: ClassVar[List[str]] = ["results"]

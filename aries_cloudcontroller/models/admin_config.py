@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -33,7 +33,7 @@ class AdminConfig(BaseModel):
     AdminConfig
     """
 
-    config: Optional[Union[str, Any]] = Field(
+    config: Optional[Dict[str, Any]] = Field(
         default=None, description="Configuration settings"
     )
     __properties: ClassVar[List[str]] = ["config"]

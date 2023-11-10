@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,20 +34,20 @@ class V20CredFilterIndy(BaseModel):
     V20CredFilterIndy
     """
 
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
-    issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    issuer_did: Optional[StrictStr] = Field(
         default=None, description="Credential issuer DID"
     )
-    schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_id: Optional[StrictStr] = Field(
         default=None, description="Schema identifier"
     )
-    schema_issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_issuer_did: Optional[StrictStr] = Field(
         default=None, description="Schema issuer DID"
     )
     schema_name: Optional[StrictStr] = Field(default=None, description="Schema name")
-    schema_version: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_version: Optional[StrictStr] = Field(
         default=None, description="Schema version"
     )
     __properties: ClassVar[List[str]] = [

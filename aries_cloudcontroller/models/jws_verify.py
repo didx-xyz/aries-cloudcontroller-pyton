@@ -19,8 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, StrictStr, field_validator
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,7 +34,7 @@ class JWSVerify(BaseModel):
     JWSVerify
     """
 
-    jwt: Optional[Annotated[str, Field(strict=True)]] = None
+    jwt: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["jwt"]
 
     @field_validator("jwt")

@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.credential_status_options import (
     CredentialStatusOptions,
@@ -42,7 +41,7 @@ class LDProofVCDetailOptions(BaseModel):
         default=None,
         description="A challenge to include in the proof. SHOULD be provided by the requesting party of the credential (=holder)",
     )
-    created: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created: Optional[StrictStr] = Field(
         default=None,
         description="The date and time of the proof (with a maximum accuracy in seconds). Defaults to current system time",
     )

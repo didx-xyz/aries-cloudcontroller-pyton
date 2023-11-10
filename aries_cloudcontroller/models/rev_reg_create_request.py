@@ -19,7 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, StrictStr, field_validator
 from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -35,7 +35,7 @@ class RevRegCreateRequest(BaseModel):
     RevRegCreateRequest
     """
 
-    credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    credential_definition_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     max_cred_num: Optional[Annotated[int, Field(le=32768, strict=True, ge=4)]] = Field(

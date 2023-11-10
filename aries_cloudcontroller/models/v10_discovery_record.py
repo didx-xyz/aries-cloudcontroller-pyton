@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.disclose import Disclose
 from aries_cloudcontroller.models.query import Query
@@ -40,7 +39,7 @@ class V10DiscoveryRecord(BaseModel):
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     disclose: Optional[Disclose] = None
@@ -56,7 +55,7 @@ class V10DiscoveryRecord(BaseModel):
         default=None,
         description="Record trace information, based on agent configuration",
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

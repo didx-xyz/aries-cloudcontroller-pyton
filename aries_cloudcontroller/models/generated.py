@@ -19,8 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, StrictStr, field_validator
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,9 +34,9 @@ class Generated(BaseModel):
     Generated
     """
 
-    master_secret: Optional[Annotated[str, Field(strict=True)]] = None
-    number: Optional[Annotated[str, Field(strict=True)]] = None
-    remainder: Optional[Annotated[str, Field(strict=True)]] = None
+    master_secret: Optional[StrictStr] = None
+    number: Optional[StrictStr] = None
+    remainder: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["master_secret", "number", "remainder"]
 
     @field_validator("master_secret")

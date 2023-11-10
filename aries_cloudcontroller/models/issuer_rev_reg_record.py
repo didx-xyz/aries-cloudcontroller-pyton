@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictInt, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.indy_rev_reg_def import IndyRevRegDef
 from aries_cloudcontroller.models.indy_rev_reg_entry import IndyRevRegEntry
@@ -37,16 +36,14 @@ class IssuerRevRegRecord(BaseModel):
     IssuerRevRegRecord
     """
 
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    cred_def_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
-    issuer_did: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Issuer DID"
-    )
+    issuer_did: Optional[StrictStr] = Field(default=None, description="Issuer DID")
     max_cred_num: Optional[StrictInt] = Field(
         default=None,
         description="Maximum number of credentials for revocation registry",
@@ -63,7 +60,7 @@ class IssuerRevRegRecord(BaseModel):
     )
     revoc_reg_def: Optional[IndyRevRegDef] = None
     revoc_reg_entry: Optional[IndyRevRegEntry] = None
-    revoc_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    revoc_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
     state: Optional[StrictStr] = Field(
@@ -72,16 +69,14 @@ class IssuerRevRegRecord(BaseModel):
     tag: Optional[StrictStr] = Field(
         default=None, description="Tag within issuer revocation registry identifier"
     )
-    tails_hash: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Tails hash"
-    )
+    tails_hash: Optional[StrictStr] = Field(default=None, description="Tails hash")
     tails_local_path: Optional[StrictStr] = Field(
         default=None, description="Local path to tails file"
     )
     tails_public_uri: Optional[StrictStr] = Field(
         default=None, description="Public URI for tails file"
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

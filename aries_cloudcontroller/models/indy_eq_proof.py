@@ -19,8 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, StrictStr, field_validator
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,12 +34,12 @@ class IndyEQProof(BaseModel):
     IndyEQProof
     """
 
-    a_prime: Optional[Annotated[str, Field(strict=True)]] = None
-    e: Optional[Annotated[str, Field(strict=True)]] = None
-    m: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
-    m2: Optional[Annotated[str, Field(strict=True)]] = None
-    revealed_attrs: Optional[Dict[str, Annotated[str, Field(strict=True)]]] = None
-    v: Optional[Annotated[str, Field(strict=True)]] = None
+    a_prime: Optional[StrictStr] = None
+    e: Optional[StrictStr] = None
+    m: Optional[Dict[str, StrictStr]] = None
+    m2: Optional[StrictStr] = None
+    revealed_attrs: Optional[Dict[str, StrictStr]] = None
+    v: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
         "a_prime",
         "e",

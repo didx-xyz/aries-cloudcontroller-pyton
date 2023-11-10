@@ -19,7 +19,6 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,7 +34,7 @@ class DIFHolder(BaseModel):
     """
 
     directive: Optional[StrictStr] = Field(default=None, description="Preference")
-    field_id: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    field_id: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = ["directive", "field_id"]
 
     @field_validator("directive")

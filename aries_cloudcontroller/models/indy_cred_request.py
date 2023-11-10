@@ -17,10 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, Field, StrictStr, field_validator
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,17 +34,13 @@ class IndyCredRequest(BaseModel):
     IndyCredRequest
     """
 
-    blinded_ms: Union[str, Any] = Field(description="Blinded master secret")
-    blinded_ms_correctness_proof: Union[str, Any] = Field(
+    blinded_ms: Dict[str, Any] = Field(description="Blinded master secret")
+    blinded_ms_correctness_proof: Dict[str, Any] = Field(
         description="Blinded master secret correctness proof"
     )
-    cred_def_id: Annotated[str, Field(strict=True)] = Field(
-        description="Credential definition identifier"
-    )
-    nonce: Annotated[str, Field(strict=True)] = Field(
-        description="Nonce in credential request"
-    )
-    prover_did: Annotated[str, Field(strict=True)] = Field(description="Prover DID")
+    cred_def_id: StrictStr = Field(description="Credential definition identifier")
+    nonce: StrictStr = Field(description="Nonce in credential request")
+    prover_did: StrictStr = Field(description="Prover DID")
     __properties: ClassVar[List[str]] = [
         "blinded_ms",
         "blinded_ms_correctness_proof",

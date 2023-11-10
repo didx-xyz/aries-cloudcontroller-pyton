@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.attach_decorator_data_jws import (
     AttachDecoratorDataJWS,
@@ -38,7 +37,7 @@ class AttachDecoratorData(BaseModel):
     AttachDecoratorData
     """
 
-    var_base64: Optional[Annotated[str, Field(strict=True)]] = Field(
+    var_base64: Optional[StrictStr] = Field(
         default=None, description="Base64-encoded data", alias="base64"
     )
     var_json: Optional[Union[Dict[str, Any], List[Dict[str, Any]]]] = Field(
@@ -48,7 +47,7 @@ class AttachDecoratorData(BaseModel):
     links: Optional[List[StrictStr]] = Field(
         default=None, description="List of hypertext links to data"
     )
-    sha256: Optional[Annotated[str, Field(strict=True)]] = Field(
+    sha256: Optional[StrictStr] = Field(
         default=None, description="SHA256 hash (binhex encoded) of content"
     )
     __properties: ClassVar[List[str]] = ["base64", "json", "jws", "links", "sha256"]

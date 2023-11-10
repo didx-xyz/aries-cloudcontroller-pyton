@@ -19,8 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, Field, StrictStr, field_validator
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,7 +34,7 @@ class AttachDecoratorDataJWSHeader(BaseModel):
     AttachDecoratorDataJWSHeader
     """
 
-    kid: Annotated[str, Field(strict=True)] = Field(
+    kid: StrictStr = Field(
         description="Key identifier, in W3C did:key or DID URL format"
     )
     __properties: ClassVar[List[str]] = ["kid"]

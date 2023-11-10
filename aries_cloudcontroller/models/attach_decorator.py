@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictInt, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.attach_decorator_data import AttachDecoratorData
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -47,7 +46,7 @@ class AttachDecorator(BaseModel):
         default=None, description="Human-readable description of content"
     )
     filename: Optional[StrictStr] = Field(default=None, description="File name")
-    lastmod_time: Optional[Annotated[str, Field(strict=True)]] = Field(
+    lastmod_time: Optional[StrictStr] = Field(
         default=None,
         description="Hint regarding last modification datetime, in ISO-8601 format",
     )

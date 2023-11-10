@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,7 +34,7 @@ class DIDCreateOptions(BaseModel):
     DIDCreateOptions
     """
 
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(
+    did: Optional[StrictStr] = Field(
         default=None,
         description="Specify final value of the did (including did:<method>: prefix)if the method supports or requires so.",
     )

@@ -18,8 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field
-from typing_extensions import Annotated
+from pydantic import BaseModel, Field, StrictStr
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -34,7 +33,7 @@ class ClearPendingRevocationsRequest(BaseModel):
     ClearPendingRevocationsRequest
     """
 
-    purge: Optional[Dict[str, List[Annotated[str, Field(strict=True)]]]] = Field(
+    purge: Optional[Dict[str, List[StrictStr]]] = Field(
         default=None,
         description="Credential revocation ids by revocation registry id: omit for all, specify null or empty list for all pending per revocation registry",
     )

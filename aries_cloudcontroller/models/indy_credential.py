@@ -17,10 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, Field, StrictStr, field_validator
 
 from aries_cloudcontroller.models.indy_attr_value import IndyAttrValue
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -36,24 +35,20 @@ class IndyCredential(BaseModel):
     IndyCredential
     """
 
-    cred_def_id: Annotated[str, Field(strict=True)] = Field(
-        description="Credential definition identifier"
-    )
-    rev_reg: Optional[Union[str, Any]] = Field(
+    cred_def_id: StrictStr = Field(description="Credential definition identifier")
+    rev_reg: Optional[Dict[str, Any]] = Field(
         default=None, description="Revocation registry state"
     )
-    rev_reg_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    rev_reg_id: Optional[StrictStr] = Field(
         default=None, description="Revocation registry identifier"
     )
-    schema_id: Annotated[str, Field(strict=True)] = Field(
-        description="Schema identifier"
-    )
-    signature: Union[str, Any] = Field(description="Credential signature")
-    signature_correctness_proof: Union[str, Any] = Field(
+    schema_id: StrictStr = Field(description="Schema identifier")
+    signature: Dict[str, Any] = Field(description="Credential signature")
+    signature_correctness_proof: Dict[str, Any] = Field(
         description="Credential signature correctness proof"
     )
     values: Dict[str, IndyAttrValue] = Field(description="Credential attributes")
-    witness: Optional[Union[str, Any]] = Field(
+    witness: Optional[Dict[str, Any]] = Field(
         default=None, description="Witness for revocation proof"
     )
     __properties: ClassVar[List[str]] = [

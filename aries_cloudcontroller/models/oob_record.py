@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.invitation_message import InvitationMessage
 from aries_cloudcontroller.models.service_decorator import ServiceDecorator
@@ -43,7 +42,7 @@ class OobRecord(BaseModel):
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection record identifier"
     )
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     invi_msg_id: StrictStr = Field(description="Invitation message identifier")
@@ -59,7 +58,7 @@ class OobRecord(BaseModel):
         default=None,
         description="Record trace information, based on agent configuration",
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

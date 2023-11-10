@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -33,7 +33,7 @@ class UpdateProfileSettings(BaseModel):
     UpdateProfileSettings
     """
 
-    extra_settings: Optional[Union[str, Any]] = Field(
+    extra_settings: Optional[Dict[str, Any]] = Field(
         default=None, description="Agent config key-value pairs"
     )
     __properties: ClassVar[List[str]] = ["extra_settings"]

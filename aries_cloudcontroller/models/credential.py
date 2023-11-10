@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.linked_data_proof import LinkedDataProof
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -39,12 +38,12 @@ class Credential(BaseModel):
     context: List[Union[str, Dict]] = Field(
         description="The JSON-LD context of the credential", alias="@context"
     )
-    credential_subject: Union[str, Any] = Field(alias="credentialSubject")
-    expiration_date: Optional[Annotated[str, Field(strict=True)]] = Field(
+    credential_subject: Dict[str, Any] = Field(alias="credentialSubject")
+    expiration_date: Optional[StrictStr] = Field(
         default=None, description="The expiration date", alias="expirationDate"
     )
-    id: Optional[Annotated[str, Field(strict=True)]] = None
-    issuance_date: Annotated[str, Field(strict=True)] = Field(
+    id: Optional[StrictStr] = None
+    issuance_date: StrictStr = Field(
         description="The issuance date", alias="issuanceDate"
     )
     issuer: Union[str, Dict[str, Any]] = Field(

@@ -19,7 +19,6 @@ import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictInt, StrictStr
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -34,7 +33,7 @@ class W3CCredentialsListRequest(BaseModel):
     W3CCredentialsListRequest
     """
 
-    contexts: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    contexts: Optional[List[StrictStr]] = None
     given_id: Optional[StrictStr] = Field(
         default=None, description="Given credential id to match"
     )
@@ -45,7 +44,7 @@ class W3CCredentialsListRequest(BaseModel):
         default=None, description="Maximum number of results to return"
     )
     proof_types: Optional[List[StrictStr]] = None
-    schema_ids: Optional[List[Annotated[str, Field(strict=True)]]] = Field(
+    schema_ids: Optional[List[StrictStr]] = Field(
         default=None, description="Schema identifiers, all of which to match"
     )
     subject_ids: Optional[List[StrictStr]] = Field(
@@ -54,7 +53,7 @@ class W3CCredentialsListRequest(BaseModel):
     tag_query: Optional[Dict[str, StrictStr]] = Field(
         default=None, description="Tag filter"
     )
-    types: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    types: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = [
         "contexts",
         "given_id",

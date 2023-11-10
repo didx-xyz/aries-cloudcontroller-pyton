@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.credential_preview import CredentialPreview
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -45,13 +44,13 @@ class CredentialProposal(BaseModel):
     comment: Optional[StrictStr] = Field(
         default=None, description="Human-readable comment"
     )
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = None
+    cred_def_id: Optional[StrictStr] = None
     credential_proposal: Optional[CredentialPreview] = None
-    issuer_did: Optional[Annotated[str, Field(strict=True)]] = None
-    schema_id: Optional[Annotated[str, Field(strict=True)]] = None
-    schema_issuer_did: Optional[Annotated[str, Field(strict=True)]] = None
+    issuer_did: Optional[StrictStr] = None
+    schema_id: Optional[StrictStr] = None
+    schema_issuer_did: Optional[StrictStr] = None
     schema_name: Optional[StrictStr] = None
-    schema_version: Optional[Annotated[str, Field(strict=True)]] = None
+    schema_version: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = [
         "@id",
         "@type",

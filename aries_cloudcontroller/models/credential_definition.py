@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.cred_def_value import CredDefValue
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -36,7 +35,7 @@ class CredentialDefinition(BaseModel):
     CredentialDefinition
     """
 
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     schema_id: Optional[StrictStr] = Field(
@@ -51,9 +50,7 @@ class CredentialDefinition(BaseModel):
         default=None, description="Signature type: CL for Camenisch-Lysyanskaya"
     )
     value: Optional[CredDefValue] = None
-    ver: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Node protocol version"
-    )
+    ver: Optional[StrictStr] = Field(default=None, description="Node protocol version")
     __properties: ClassVar[List[str]] = [
         "id",
         "schemaId",

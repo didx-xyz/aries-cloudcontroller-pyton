@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.indy_proof_req_attr_spec import IndyProofReqAttrSpec
 from aries_cloudcontroller.models.indy_proof_req_pred_spec import IndyProofReqPredSpec
@@ -42,16 +41,14 @@ class IndyProofRequest(BaseModel):
 
     name: Optional[StrictStr] = Field(default=None, description="Proof request name")
     non_revoked: Optional[IndyProofRequestNonRevoked] = None
-    nonce: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Nonce"
-    )
+    nonce: Optional[StrictStr] = Field(default=None, description="Nonce")
     requested_attributes: Dict[str, IndyProofReqAttrSpec] = Field(
         description="Requested attribute specifications of proof request"
     )
     requested_predicates: Dict[str, IndyProofReqPredSpec] = Field(
         description="Requested predicate specifications of proof request"
     )
-    version: Optional[Annotated[str, Field(strict=True)]] = Field(
+    version: Optional[StrictStr] = Field(
         default=None, description="Proof request version"
     )
     __properties: ClassVar[List[str]] = [

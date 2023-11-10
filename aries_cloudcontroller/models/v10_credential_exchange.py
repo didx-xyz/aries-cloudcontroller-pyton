@@ -17,10 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.credential_offer import CredentialOffer
 from aries_cloudcontroller.models.credential_proposal import CredentialProposal
@@ -56,11 +55,11 @@ class V10CredentialExchange(BaseModel):
     connection_id: Optional[StrictStr] = Field(
         default=None, description="Connection identifier"
     )
-    created_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    created_at: Optional[StrictStr] = Field(
         default=None, description="Time of record creation"
     )
     credential: Optional[IndyCredInfo] = None
-    credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    credential_definition_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     credential_exchange_id: Optional[StrictStr] = Field(
@@ -73,7 +72,7 @@ class V10CredentialExchange(BaseModel):
     credential_offer_dict: Optional[CredentialOffer] = None
     credential_proposal_dict: Optional[CredentialProposal] = None
     credential_request: Optional[IndyCredRequest] = None
-    credential_request_metadata: Optional[Union[str, Any]] = Field(
+    credential_request_metadata: Optional[Dict[str, Any]] = Field(
         default=None, description="(Indy) credential request metadata"
     )
     error_msg: Optional[StrictStr] = Field(default=None, description="Error message")
@@ -94,7 +93,7 @@ class V10CredentialExchange(BaseModel):
     role: Optional[StrictStr] = Field(
         default=None, description="Issue-credential exchange role: holder or issuer"
     )
-    schema_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    schema_id: Optional[StrictStr] = Field(
         default=None, description="Schema identifier"
     )
     state: Optional[StrictStr] = Field(
@@ -107,7 +106,7 @@ class V10CredentialExchange(BaseModel):
         default=None,
         description="Record trace information, based on agent configuration",
     )
-    updated_at: Optional[Annotated[str, Field(strict=True)]] = Field(
+    updated_at: Optional[StrictStr] = Field(
         default=None, description="Time of last record update"
     )
     __properties: ClassVar[List[str]] = [

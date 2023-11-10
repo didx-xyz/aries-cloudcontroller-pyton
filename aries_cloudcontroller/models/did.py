@@ -19,8 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Literal, Optional
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, Field, StrictStr, field_validator
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 from aries_cloudcontroller.util.regex_patterns import BBS_PATTERN, ED25519_PATTERN
@@ -36,9 +35,7 @@ class DID(BaseModel):
     DID
     """
 
-    did: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="DID of interest"
-    )
+    did: Optional[StrictStr] = Field(default=None, description="DID of interest")
     key_type: Optional[Literal["ed25519", "bls12381g2"]] = Field(
         default=None, description="Key type associated with the DID"
     )
@@ -49,7 +46,7 @@ class DID(BaseModel):
         default=None,
         description="Whether DID is current public DID, posted to ledger but not current public DID, or local to the wallet",
     )
-    verkey: Optional[Annotated[str, Field(strict=True)]] = Field(
+    verkey: Optional[StrictStr] = Field(
         default=None, description="Public verification key"
     )
     __properties: ClassVar[List[str]] = [

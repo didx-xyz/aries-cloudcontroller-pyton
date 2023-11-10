@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,7 +34,7 @@ class IndyPresAttrSpec(BaseModel):
     IndyPresAttrSpec
     """
 
-    cred_def_id: Optional[Annotated[str, Field(strict=True)]] = None
+    cred_def_id: Optional[StrictStr] = None
     mime_type: Optional[StrictStr] = Field(
         default=None, description="MIME type (default null)", alias="mime-type"
     )

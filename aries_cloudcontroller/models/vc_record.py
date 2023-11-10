@@ -16,10 +16,9 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -34,9 +33,9 @@ class VCRecord(BaseModel):
     VCRecord
     """
 
-    contexts: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    contexts: Optional[List[StrictStr]] = None
     cred_tags: Optional[Dict[str, StrictStr]] = None
-    cred_value: Optional[Union[str, Any]] = Field(
+    cred_value: Optional[Dict[str, Any]] = Field(
         default=None, description="(JSON-serializable) credential value"
     )
     expanded_types: Optional[List[StrictStr]] = None

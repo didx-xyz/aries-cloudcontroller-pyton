@@ -17,10 +17,9 @@ from __future__ import annotations
 import json
 import pprint
 import re
-from typing import Any, ClassVar, Dict, List, Optional, Union
+from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictBool, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.attachment_def import AttachmentDef
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
@@ -53,10 +52,10 @@ class InvitationCreateRequest(BaseModel):
         description="A self-attested code the receiver may want to display to the user or use in automatically deciding what to do with the out-of-band message",
     )
     handshake_protocols: Optional[List[StrictStr]] = None
-    mediation_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    mediation_id: Optional[StrictStr] = Field(
         default=None, description="Identifier for active mediation record to be used"
     )
-    metadata: Optional[Union[str, Any]] = Field(
+    metadata: Optional[Dict[str, Any]] = Field(
         default=None,
         description="Optional metadata to attach to the connection created with the invitation",
     )

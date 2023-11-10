@@ -19,8 +19,7 @@ import pprint
 import re
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field, field_validator
-from typing_extensions import Annotated
+from pydantic import BaseModel, Field, StrictStr, field_validator
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -35,7 +34,7 @@ class CredentialDefinitionSendResult(BaseModel):
     CredentialDefinitionSendResult
     """
 
-    credential_definition_id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    credential_definition_id: Optional[StrictStr] = Field(
         default=None, description="Credential definition identifier"
     )
     __properties: ClassVar[List[str]] = ["credential_definition_id"]

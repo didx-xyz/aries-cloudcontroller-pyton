@@ -18,8 +18,7 @@ import json
 import pprint
 from typing import Any, ClassVar, Dict, List, Optional
 
-from pydantic import BaseModel, Field
-from typing_extensions import Annotated
+from pydantic import BaseModel, StrictStr
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -34,7 +33,7 @@ class RevRegsCreated(BaseModel):
     RevRegsCreated
     """
 
-    rev_reg_ids: Optional[List[Annotated[str, Field(strict=True)]]] = None
+    rev_reg_ids: Optional[List[StrictStr]] = None
     __properties: ClassVar[List[str]] = ["rev_reg_ids"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

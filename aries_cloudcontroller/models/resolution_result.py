@@ -16,7 +16,7 @@ from __future__ import annotations
 
 import json
 import pprint
-from typing import Any, ClassVar, Dict, List, Union
+from typing import Any, ClassVar, Dict, List
 
 from pydantic import BaseModel, Field
 
@@ -33,8 +33,8 @@ class ResolutionResult(BaseModel):
     ResolutionResult
     """
 
-    did_document: Union[str, Any] = Field(description="DID Document")
-    metadata: Union[str, Any] = Field(description="Resolution metadata")
+    did_document: Dict[str, Any] = Field(description="DID Document")
+    metadata: Dict[str, Any] = Field(description="Resolution metadata")
     __properties: ClassVar[List[str]] = ["did_document", "metadata"]
 
     model_config = DEFAULT_PYDANTIC_MODEL_CONFIG

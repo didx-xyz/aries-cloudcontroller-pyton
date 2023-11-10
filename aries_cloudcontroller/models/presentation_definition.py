@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.models.claim_format import ClaimFormat
 from aries_cloudcontroller.models.input_descriptors import InputDescriptors
@@ -39,7 +38,7 @@ class PresentationDefinition(BaseModel):
     """
 
     format: Optional[ClaimFormat] = None
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(
+    id: Optional[StrictStr] = Field(
         default=None, description="Unique Resource Identifier"
     )
     input_descriptors: Optional[List[InputDescriptors]] = None

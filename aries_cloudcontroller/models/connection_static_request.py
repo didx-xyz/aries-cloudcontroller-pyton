@@ -20,7 +20,6 @@ import re
 from typing import Any, ClassVar, Dict, List, Optional
 
 from pydantic import BaseModel, Field, StrictStr, field_validator
-from typing_extensions import Annotated
 
 from aries_cloudcontroller.util import DEFAULT_PYDANTIC_MODEL_CONFIG
 
@@ -38,16 +37,12 @@ class ConnectionStaticRequest(BaseModel):
     alias: Optional[StrictStr] = Field(
         default=None, description="Alias to assign to this connection"
     )
-    my_did: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Local DID"
-    )
+    my_did: Optional[StrictStr] = Field(default=None, description="Local DID")
     my_seed: Optional[StrictStr] = Field(
         default=None, description="Seed to use for the local DID"
     )
-    their_did: Optional[Annotated[str, Field(strict=True)]] = Field(
-        default=None, description="Remote DID"
-    )
-    their_endpoint: Optional[Annotated[str, Field(strict=True)]] = Field(
+    their_did: Optional[StrictStr] = Field(default=None, description="Remote DID")
+    their_endpoint: Optional[StrictStr] = Field(
         default=None, description="URL endpoint for other party"
     )
     their_label: Optional[StrictStr] = Field(
